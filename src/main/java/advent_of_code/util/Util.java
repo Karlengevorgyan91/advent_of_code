@@ -22,4 +22,14 @@ public class Util {
 
         return fileReading;
     }
+
+    public static List<List<Integer>> sliding(List<Integer> listOfInteger, int size) {
+        var newList = new ArrayList<List<Integer>>();
+
+        for (int i = 0; i < listOfInteger.size() - size + 1; i++) {
+            newList.add(listOfInteger.subList(i, i + size));
+        }
+
+        return newList;
+    }
 }

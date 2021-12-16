@@ -2,6 +2,7 @@ package advent_of_code.day1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import advent_of_code.util.Util;
 
@@ -16,19 +17,9 @@ public class SonarSweep {
     }
 
     public static Integer count_of_depth_increases(List<Integer> depthReading) {
-        Integer compareNumber = depthReading.get(0);
-        Integer numberOfDepth = 0;
-
-        for (Integer nextNumberOfDepth : depthReading) {
-
-            if (nextNumberOfDepth > compareNumber) {
-                numberOfDepth++;
-            }
-
-            compareNumber = nextNumberOfDepth;
-        }
-
-        return numberOfDepth;
+        return Util.sliding(depthReading, 2).stream()
+                .map(element -> element.get(1) - element.get(0))
+                .filter(number -> number > 0).collect(Collectors.toList()).size();
     }
 
     public static List<Integer> parsToInt(List<String> listOfString) {
@@ -46,5 +37,4 @@ public class SonarSweep {
 
         return listOfDepth;
     }
-
 }
